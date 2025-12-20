@@ -1,0 +1,19 @@
+<?php
+// conn.php
+// Database connection settings
+$host = "localhost";       // Usually localhost
+$user = "root";            // Your MySQL username
+$password = "";            // Your MySQL password
+$database = "pizzeria";    // Your database name
+
+// Create connection
+$conn = new mysqli($host, $user, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Set charset
+$conn->set_charset("utf8mb4");
+?>
