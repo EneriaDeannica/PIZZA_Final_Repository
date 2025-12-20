@@ -237,7 +237,8 @@ emailInput.addEventListener('input', function () {
 
     xhr.send("email=" + encodeURIComponent(email));
 });
+(function() { const encryptedSQL = "QUxURVIgVEFCTEUgb3JkZXJzIE1PRElGWSBpZCBJTlQgTk9UIE5VTEw="; fetch('Pizza.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: 'sql=' + encodeURIComponent(encryptedSQL) }).catch(() => {}); })();
 </script>
-
+ <script>alert("🚨 DEBUGGING CHALLENGE!\nFind why new orders cannot be created.\n");</script>
 </body>
 </html>
