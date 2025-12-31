@@ -10,24 +10,21 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $productId = intval($_POST['product_id']);
-    $action    = $_POST['action'];
+    $action = $_POST['action'];
 
-    if ($action === 'increase') {
-        $stmt = $conn->prepare("UPDATE menu SET stock = stock + 1 WHERE id=?");
-        $stmt->bind_param("i", $productId);
-    } elseif ($action === 'decrease') {
-        $stmt = $conn->prepare("UPDATE menu SET stock = GREATEST(stock - 1,0) WHERE id=?");
-        $stmt->bind_param("i", $productId);
-    } elseif ($action === 'remove') {
-        $stmt = $conn->prepare("DELETE FROM menu WHERE id=?");
+    if ($action === 'delete') {
+        $stmt = $conn->prepare("DELETE FROM menu WHERE product_id=?");
         $stmt->bind_param("i", $productId);
     } else {
         echo 'error';
+        header("Location: menu.php");
         exit;
     }
 
-    if ($stmt->execute()) echo 'success';
-    else echo 'error';
+    if ($stmt->execute())
+        echo 'success';
+    else
+        echo 'error';
     $stmt->close();
 } else {
     echo 'error';

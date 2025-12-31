@@ -4,7 +4,7 @@
 $host = "localhost";       // Usually localhost
 $user = "root";            // Your MySQL username
 $password = "";            // Your MySQL password
-$database = "pizzeria";    // Your database name
+$database = "pizza";    // Your database name
 
 // Create connection
 $conn = new mysqli($host, $user, $password, $database);

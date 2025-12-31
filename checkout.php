@@ -57,35 +57,105 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($cart)) {
 
 <!-- ====== Styles ====== -->
 <style>
-.checkout-section {
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
-}
-.checkout-card {
-    background: url(Background.png);
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    padding: 30px 20px;
-    max-width: 600px;
-    width: 100%;
-}
-.checkout-title { font-size: 30px; color: #7a1f12; margin-bottom: 25px; text-align: center; }
-.checkout-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
-.checkout-table th, .checkout-table td { padding: 10px; border-bottom: 1px solid #ddd; text-align: center; font-size: 14px; }
-.checkout-table img { width: 60px; border-radius: 8px; }
-.checkout-total { font-size: 20px; font-weight: bold; text-align: right; margin-bottom: 25px; }
-.checkout-form label { display: block; margin: 5px 0 5px; font-weight: bold; font-size: 14px; }
-.checkout-form input, .checkout-form textarea { width: 95%; padding: 5px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; margin-bottom: 10px; }
-.place-order-btn { display: inline-block; margin: 5px 10px; background: #7a1f12; color: #fff; padding: 12px 24px; border-radius: 25px; border: none; cursor: pointer; font-size: 14px; text-decoration: none; transition: all 0.3s ease; }
-.place-order-btn:hover { background: #a93226; transform: translateY(-2px); }
-.order-success { text-align: center; font-size: 16px; color: #fff; background: #4caf50; padding: 15px 20px; border-radius: 10px; margin-bottom: 20px; }
+    .checkout-section {
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+    }
 
-/* Button group container */
-.button-group {
-    text-align: center;
-    margin-top: 20px;
-}
+    .checkout-card {
+        background: url(Background.png);
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px 20px;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .checkout-title {
+        font-size: 30px;
+        color: #7a1f12;
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .checkout-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 25px;
+    }
+
+    .checkout-table th,
+    .checkout-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .checkout-table img {
+        width: 60px;
+        border-radius: 8px;
+    }
+
+    .checkout-total {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: right;
+        margin-bottom: 25px;
+    }
+
+    .checkout-form label {
+        display: block;
+        margin: 5px 0 5px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .checkout-form input,
+    .checkout-form textarea {
+        width: 95%;
+        padding: 5px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .place-order-btn {
+        display: inline-block;
+        margin: 5px 10px;
+        background: #7a1f12;
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .place-order-btn:hover {
+        background: #a93226;
+        transform: translateY(-2px);
+    }
+
+    .order-success {
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+        background: #4caf50;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    /* Button group container */
+    .button-group {
+        text-align: center;
+        margin-top: 20px;
+    }
 </style>
 
 <section class="checkout-section">
@@ -114,14 +184,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($cart)) {
                         $qty = $item['qty'] ?? 1;
                         $subtotal = $item['price'] * $qty;
                         $total += $subtotal;
-                    ?>
-                    <tr>
-                        <td><img src="<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>"></td>
-                        <td><?= htmlspecialchars($item['name']) ?></td>
-                        <td>₱<?= number_format($item['price'], 2) ?></td>
-                        <td><?= $qty ?></td>
-                        <td>₱<?= number_format($subtotal, 2) ?></td>
-                    </tr>
+                        ?>
+                        <tr>
+                            <td><img src="<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
+                            </td>
+                            <td><?= htmlspecialchars($item['name']) ?></td>
+                            <td>₱<?= number_format($item['price'], 2) ?></td>
+                            <td><?= $qty ?></td>
+                            <td>₱<?= number_format($subtotal, 2) ?></td>
+                        </tr>
                     <?php endforeach; ?>
                 </table>
 
@@ -148,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($cart)) {
                 <p>Your cart is empty. Add items to checkout.</p>
             <?php endif; ?>
 
-            <?php if($orderMessage && !$orderSuccess): ?>
+            <?php if ($orderMessage && !$orderSuccess): ?>
                 <div class="order-success" style="background:#f44336;"><?= $orderMessage ?></div>
             <?php endif; ?>
         <?php endif; ?>
